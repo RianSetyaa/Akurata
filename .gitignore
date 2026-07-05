@@ -12,6 +12,7 @@ Archive.zip
 # Environment & Secrets
 .env
 api/secrets.php
+api/config.php
 
 # User uploads & Data
 uploads/
