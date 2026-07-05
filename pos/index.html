@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>POS Terminal - Akurata POS</title>
+    <meta name="description" content="Terminal kasir Akurata POS." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="../logo.png" />
+    <link rel="stylesheet" href="pos.css?v=20260615-2" />
+  </head>
+  <body class="pos-terminal">
+
+    <!-- Top Bar -->
+    <header class="pos-topbar">
+      <a class="brand" href="#" aria-label="Akurata POS">
+        <span class="brand-mark"><img src="../logo.png" alt="" /></span>
+        <span class="brand-name">Akurata POS</span>
+      </a>
+      <div class="cashier-info">
+        <span data-cashier-name>Kasir</span>
+        <span>&middot;</span>
+        <span data-outlet-name>Outlet</span>
+      </div>
+      <button class="pos-logout-btn" type="button" data-pos-logout>Keluar</button>
+    </header>
+
+    <!-- Main Grid -->
+    <main class="pos-main">
+
+      <!-- Product Panel -->
+      <section class="pos-products">
+        <div class="pos-search-bar">
+          <input
+            type="text"
+            data-pos-search
+            placeholder="Cari produk, SKU, atau scan barcode..."
+            autocomplete="off"
+            autofocus
+          />
+        </div>
+        <div class="pos-product-grid" data-pos-product-grid>
+          <div class="pos-no-products">Memuat produk...</div>
+        </div>
+      </section>
+
+      <!-- Cart Panel -->
+      <aside class="pos-cart">
+        <div class="pos-cart-header">
+          <div>
+            <h2>Keranjang</h2>
+            <span class="cart-count" data-cart-count>0 item</span>
+          </div>
+          <button class="pos-cart-clear" type="button" data-cart-clear>Kosongkan</button>
+        </div>
+
+        <div class="pos-cart-items" data-cart-items>
+          <div class="pos-cart-empty" data-cart-empty>Keranjang kosong</div>
+        </div>
+
+        <div class="pos-cart-summary">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <strong data-summary-gross>Rp 0</strong>
+          </div>
+          <div class="summary-row">
+            <span>Diskon</span>
+            <strong data-summary-discount>Rp 0</strong>
+          </div>
+          <div class="summary-row">
+            <span data-tax-label>Pajak</span>
+            <strong data-summary-tax>Rp 0</strong>
+          </div>
+          <div class="summary-row is-total">
+            <span>Total</span>
+            <strong data-summary-total>Rp 0</strong>
+          </div>
+        </div>
+
+        <div class="pos-cart-payment">
+          <div class="pos-payment-methods">
+            <button class="pos-payment-method-btn is-active" type="button" data-payment-method="cash">Tunai</button>
+            <button class="pos-payment-method-btn" type="button" data-payment-method="qris">QRIS</button>
+            <button class="pos-payment-method-btn" type="button" data-payment-method="transfer">Transfer</button>
+            <button class="pos-payment-method-btn" type="button" data-payment-method="tempo">Tempo</button>
+          </div>
+
+          <div class="pos-customer-fields" data-tempo-section style="display: none;">
+            <input type="text" data-customer-name placeholder="Nama pelanggan *" />
+            <input type="tel" data-customer-phone placeholder="No. HP pelanggan" />
+          </div>
+
+          <div class="pos-tempo-fields" data-tempo-detail style="display: none;">
+            <div>
+              <label>Jatuh tempo</label>
+              <input type="date" data-due-date />
+            </div>
+            <div class="field-row">
+              <div>
+                <label>DP</label>
+                <input type="number" data-down-payment min="0" value="0" />
+              </div>
+              <div>
+                <label>Metode DP</label>
+                <select data-dp-method>
+                  <option value="cash">Tunai</option>
+                  <option value="qris">QRIS</option>
+                  <option value="transfer">Transfer</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <button class="pos-checkout-btn" type="button" data-pos-checkout disabled>
+            Bayar
+          </button>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Receipt Modal -->
+    <div class="pos-receipt-overlay is-hidden" data-receipt-overlay>
+      <div class="pos-receipt-modal">
+        <div class="pos-receipt-header">
+          <h2>Struk Penjualan</h2>
+          <button class="pos-receipt-close" type="button" data-receipt-close>&times;</button>
+        </div>
+        <div class="pos-receipt-body">
+          <div class="receipt-paper" data-receipt-content>
+            <!-- Filled by JS -->
+          </div>
+        </div>
+        <div class="pos-receipt-actions">
+          <button class="pos-receipt-print" type="button" data-receipt-print>Cetak struk</button>
+          <button class="pos-receipt-new" type="button" data-receipt-new>Transaksi baru</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="pos-toast" data-pos-toast></div>
+
+    <script src="pos.js?v=20260615-2"></script>
+  </body>
+</html>

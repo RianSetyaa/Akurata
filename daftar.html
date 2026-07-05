@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daftar - Akurata POS</title>
+    <meta
+      name="description"
+      content="Daftar Akurata POS untuk mulai mengelola kasir, stok, piutang, dan laporan toko."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="stylesheet" href="styles.css?v=20260611-3" />
+  </head>
+  <body class="auth-page">
+    <header class="topbar auth-topbar">
+      <a class="brand" href="index.html" aria-label="Akurata POS">
+        <span class="brand-mark">
+          <img src="logo.png" alt="" />
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Akurata POS</span>
+          <span class="brand-tag">Kasir dan pembukuan toko</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Navigasi auth">
+        <a href="index.html#demo">Hubungi kami</a>
+        <a href="login.html" class="nav-cta">Masuk</a>
+      </nav>
+    </header>
+
+    <main class="auth-shell">
+      <section class="auth-card reveal">
+        <div class="auth-heading">
+          <span class="eyebrow">Mulai setup toko</span>
+          <h1>Daftar Akurata POS</h1>
+          <p>Buat akun awal untuk mencoba alur kasir, stok, dan laporan harian toko Anda.</p>
+        </div>
+
+        <div class="stepper" aria-label="Tahap pendaftaran">
+          <span class="is-active" data-step-indicator="1">Akun</span>
+          <span data-step-indicator="2">Usaha</span>
+          <span data-step-indicator="3">OTP</span>
+        </div>
+
+        <form class="auth-form stepped-form" data-stepped-form data-api="api/register.php" data-verify-api="api/verify-register-otp.php" data-redirect="dashboard/index.html" novalidate>
+          <fieldset class="form-step is-active" data-step="1">
+            <legend>Data akun</legend>
+
+            <label class="field">
+              <span>Nama pemilik atau admin</span>
+              <input type="text" name="name" autocomplete="name" required />
+            </label>
+
+            <label class="field">
+              <span>Email</span>
+              <input type="email" name="identity" autocomplete="email" required />
+            </label>
+
+            <label class="field">
+              <span>Password</span>
+              <input type="password" name="password" autocomplete="new-password" required />
+            </label>
+
+            <button type="button" class="btn btn-primary" data-next-step>Lanjut ke data usaha</button>
+          </fieldset>
+
+          <fieldset class="form-step" data-step="2">
+            <legend>Data usaha</legend>
+
+            <label class="field">
+              <span>Nama usaha</span>
+              <input type="text" name="business" autocomplete="organization" required />
+            </label>
+
+            <label class="field">
+              <span>Jumlah outlet</span>
+              <select name="outlets" required>
+                <option value="1">1 outlet</option>
+                <option value="2-3">2-3 outlet</option>
+                <option value="4+">4 outlet atau lebih</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Paket awal</span>
+              <select name="plan" required>
+                <option value="basic">Basic - 1 outlet</option>
+                <option value="store">Store - stok dan piutang</option>
+                <option value="multi">Multi Outlet - cabang dan gudang</option>
+              </select>
+            </label>
+
+            <label class="check-field terms-field">
+              <input type="checkbox" name="terms" required />
+              <span>Saya setuju untuk dihubungi terkait demo dan setup Akurata POS.</span>
+            </label>
+
+            <div class="form-actions">
+              <button type="button" class="btn btn-ghost" data-prev-step>Kembali</button>
+              <button type="submit" class="btn btn-primary">Buat akun</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-step" data-step="3">
+            <legend>Verifikasi email</legend>
+            <input type="hidden" name="pending_id" data-pending-id />
+
+            <label class="field">
+              <span>Kode OTP</span>
+              <input type="text" name="otp" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" disabled required />
+            </label>
+
+            <div class="form-actions">
+              <button type="button" class="btn btn-ghost" data-prev-step>Kembali</button>
+              <button type="submit" class="btn btn-primary">Verifikasi OTP</button>
+            </div>
+          </fieldset>
+        </form>
+
+        <p class="auth-switch">
+          Sudah punya akun?
+          <a href="login.html">Masuk</a>
+        </p>
+      </section>
+
+      <aside class="auth-aside reveal" aria-label="Ringkasan paket">
+        <div class="auth-aside-top">
+          <span class="screen-logo">
+            <img src="logo.png" alt="" />
+          </span>
+          <span class="status-pill">Setup awal</span>
+        </div>
+        <h2>Data toko disiapkan dari hal yang paling penting dulu.</h2>
+        <div class="auth-checklist">
+          <span>Produk dan harga jual</span>
+          <span>Stok awal per outlet</span>
+          <span>Metode pembayaran</span>
+          <span>Laporan shift harian</span>
+        </div>
+      </aside>
+    </main>
+
+    <script src="script.js?v=20260611-3"></script>
+  </body>
+</html>

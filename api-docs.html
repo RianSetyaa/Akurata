@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dokumentasi API - Akurata POS</title>
+    <meta
+      name="description"
+      content="Dokumentasi API Akurata POS untuk integrasi aplikasi Point of Sale eksternal (Android, iOS, Desktop)."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="stylesheet" href="styles.css?v=20260611-4" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Akurata POS">
+        <span class="brand-mark">
+          <img src="logo.png" alt="" />
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Akurata POS</span>
+          <span class="brand-tag">Kasir dan pembukuan toko</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Navigasi utama">
+        <a href="index.html#fitur">Fitur</a>
+        <a href="index.html#alur">Cara kerja</a>
+        <a href="api-docs.html" style="font-weight: 600; color: var(--primary);">API Docs</a>
+        <a href="index.html#demo">Hubungi kami</a>
+        <a href="login.html" data-session-login>Masuk</a>
+        <a href="daftar.html" class="nav-cta" data-session-register>Daftar</a>
+      </nav>
+    </header>
+
+    <main class="docs-main">
+      <section class="docs-hero reveal">
+        <div class="docs-hero-copy">
+          <span class="eyebrow">Untuk Developer Aplikasi</span>
+          <h1>Dokumentasi API Terbuka.</h1>
+          <p>
+            Integrasikan aplikasi POS kasir buatan Anda (Android/iOS/Windows) dengan 
+            database Akurata POS secara real-time melalui REST API yang aman dan cepat.
+          </p>
+        </div>
+      </section>
+
+      <section class="docs-content reveal">
+        <div class="docs-container">
+          <div class="docs-sidebar">
+            <nav>
+              <a href="#intro">Pengenalan</a>
+              <a href="#auth">1. Login & Token</a>
+              <a href="#products">2. Ambil Produk</a>
+              <a href="#transactions">3. Kirim Transaksi</a>
+              <a href="#errors">Penanganan Error</a>
+            </nav>
+          </div>
+          
+          <div class="docs-body">
+            <article id="intro">
+              <h2>Pengenalan API</h2>
+              <p>API ini menggunakan metode arsitektur REST untuk pertukaran data JSON secara stateless. API dirancang khusus untuk menghubungkan aplikasi POS (Point of Sale) eksternal dengan server Akurata POS.</p>
+              
+              <div class="docs-card">
+                <h3>Spesifikasi Umum</h3>
+                <ul>
+                  <li><strong>Base URL:</strong> <code>https://akurata.my.id/api/pos/</code></li>
+                  <li><strong>Format Data:</strong> JSON (<code>Content-Type: application/json</code>)</li>
+                  <li><strong>Autentikasi:</strong> Bearer Token.</li>
+                </ul>
+                <div class="alert alert-warning">
+                  <strong>Perhatian:</strong> Semua request (kecuali Login) wajib menyertakan header otorisasi HTTP berikut:<br>
+                  <code>Authorization: Bearer &lt;API_TOKEN&gt;</code>
+                </div>
+              </div>
+            </article>
+
+            <article id="auth">
+              <h2>1. Login (Generate Token)</h2>
+              <p>Digunakan untuk memvalidasi user (kasir) dan mendapatkan <code>API_TOKEN</code>.</p>
+              <ul>
+                <li><strong>Endpoint:</strong> <code>/auth.php</code></li>
+                <li><strong>Method:</strong> <code>POST</code></li>
+              </ul>
+              
+              <h4>Request Body (JSON):</h4>
+              <pre><code>{
+  "email": "kasir@toko.com",
+  "password": "password123"
+}</code></pre>
+
+              <h4>Response (200 OK):</h4>
+              <pre><code>{
+  "status": "success",
+  "message": "Login berhasil.",
+  "data": {
+    "token": "4a7b9c8d... (simpan token ini di aplikasi)",
+    "user": {
+      "id": 12,
+      "name": "Budi Kasir",
+      "email": "kasir@toko.com",
+      "role": "cashier"
+    },
+    "outlet": {
+      "id": 1,
+      "name": "Cabang Utama"
+    }
+  }
+}</code></pre>
+              <div class="alert alert-tip">
+                Simpan <code>token</code> yang didapat di atas menggunakan penyimpanan lokal (misal: SharedPreferences di Android) untuk digunakan pada request selanjutnya.
+              </div>
+            </article>
+
+            <article id="products">
+              <h2>2. Ambil Daftar Produk</h2>
+              <p>Digunakan untuk memuat daftar produk dan stok terkini untuk ditampilkan di layar mesin kasir.</p>
+              <ul>
+                <li><strong>Endpoint:</strong> <code>/products.php</code></li>
+                <li><strong>Method:</strong> <code>GET</code></li>
+                <li><strong>Header Wajib:</strong> <code>Authorization: Bearer &lt;API_TOKEN&gt;</code></li>
+              </ul>
+
+              <h4>Response (200 OK):</h4>
+              <pre><code>{
+  "status": "success",
+  "data": [
+    {
+      "id": 101,
+      "name": "Kopi Susu Gula Aren",
+      "sku": "KOP-001",
+      "barcode": "8991234567890",
+      "category": "Minuman",
+      "type": "simple",
+      "stock": 50,
+      "sell_price": 18000,
+      "buy_price": 10000
+    }
+  ]
+}</code></pre>
+            </article>
+
+            <article id="transactions">
+              <h2>3. Kirim Transaksi Baru (Checkout)</h2>
+              <p>Digunakan ketika pelanggan sudah selesai membayar. Endpoint ini akan mencatat penjualan di laporan web dan <strong>otomatis mengurangi stok produk</strong> di server.</p>
+              <ul>
+                <li><strong>Endpoint:</strong> <code>/transactions.php</code></li>
+                <li><strong>Method:</strong> <code>POST</code></li>
+                <li><strong>Header Wajib:</strong> <code>Authorization: Bearer &lt;API_TOKEN&gt;</code></li>
+              </ul>
+
+              <h4>Request Body (JSON):</h4>
+              <pre><code>{
+  "payment_method": "cash",
+  "discount": 0,
+  "tax": 0,
+  "items": [
+    {
+      "product_id": 101,
+      "qty": 2
+    }
+  ]
+}</code></pre>
+              <p><em>Catatan:</em> Harga barang (price) tidak perlu dikirim karena server akan menggunakan harga asli dari database demi keamanan. Anda hanya perlu mengirimkan ID produk dan jumlah (qty).</p>
+
+              <h4>Response (200 OK):</h4>
+              <pre><code>{
+  "status": "success",
+  "message": "Transaksi berhasil disimpan.",
+  "data": {
+    "transaction_id": 892,
+    "invoice_no": "POS-260702-0001",
+    "total": 51000
+  }
+}</code></pre>
+            </article>
+
+            <article id="errors">
+              <h2>Penanganan Error</h2>
+              <p>Jika terjadi kesalahan (seperti token salah, produk tidak ada, dll), server akan membalas dengan status HTTP <code>400</code>, <code>401</code>, atau <code>500</code>, beserta pesan error JSON berikut:</p>
+              <pre><code>{
+  "error": "Token tidak valid atau sesi telah berakhir."
+}</code></pre>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>(c) 2026 Akurata POS. Dibuat untuk operasional toko yang rapi.</p>
+      <div class="footer-links">
+        <a href="index.html">Beranda</a> | 
+        <a href="api-docs.html">API Documentation</a>
+      </div>
+    </footer>
+
+    <script src="script.js?v=20260611-4"></script>
+  </body>
+</html>

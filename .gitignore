@@ -1,0 +1,33 @@
+# Mac OS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+Archive.zip
+
+# Environment & Secrets
+.env
+api/secrets.php
+
+# User uploads & Data
+uploads/
+/uploads/*
+!uploads/.gitkeep
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+.qoder/
+
+# Log files
+*.log
+error_log
+
+# PHP Dependencies (if composer is used in the future)
+vendor/

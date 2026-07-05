@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Laporan Penjualan - Akurata POS</title>
+    <meta name="description" content="Laporan penjualan Akurata POS." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="../logo.png" />
+    <link rel="stylesheet" href="dashboard.css?v=20260615-8" />
+  </head>
+  <body data-page="salesReport">
+    <div class="app-shell">
+      <nav class="top-nav" aria-label="Navigasi utama">
+        <a class="brand" href="../index.html" aria-label="Akurata POS">
+          <span class="brand-mark"><img src="../logo.png" alt="" /></span>
+          <span><strong>Akurata POS</strong><small data-outlet-name>Outlet</small></span>
+        </a>
+        <div class="top-nav-links">
+          <a href="index.html" data-nav="dashboard">Dashboard</a>
+          <span class="side-section">Penjualan</span>
+          <a class="sub-link" href="sales.html" data-nav="sales">Penjualan</a>
+          <a class="sub-link" href="quotations.html" data-nav="quotations">Quotation</a>
+          <a href="products.html" data-nav="stock">Produk & Stok</a>
+          <a href="purchases.html" data-nav="purchases">Purchase Order</a>
+          <a href="receivables.html" data-nav="receivables">Piutang</a>
+          <span class="side-section">Laporan</span>
+          <a class="sub-link" href="sales-report.html" data-nav="salesReport">Laporan Penjualan</a>
+          <a class="sub-link" href="purchase-report.html" data-nav="purchaseReport">Laporan Pembelian</a>
+          <span class="side-section">Pengaturan</span>
+          <a class="sub-link" href="profile.html" data-nav="profile">Profil</a>
+          <a class="sub-link" href="business-profile.html" data-nav="businessProfile">Profil Bisnis</a>
+          <a class="sub-link" href="integrations.html" data-nav="integrations">Integrasi</a>
+          <a class="sub-link" href="logs.html" data-nav="logs">Log</a>
+          <button type="button" data-logout>Keluar</button>
+        </div>
+      </nav>
+
+      <div class="main-area">
+        <header class="app-header">
+          <div>
+            <span class="label" data-current-date>Tanggal</span>
+            <h1 data-page-title>Laporan Penjualan</h1>
+          </div>
+        </header>
+
+        <div class="report-filters" data-sales-report-filters>
+          <div class="report-filter-group">
+            <label class="report-filter-label" for="sales-start-date">Dari</label>
+            <input type="date" id="sales-start-date" data-sales-filter-start>
+          </div>
+          <div class="report-filter-group">
+            <label class="report-filter-label" for="sales-end-date">Sampai</label>
+            <input type="date" id="sales-end-date" data-sales-filter-end>
+          </div>
+          <div class="report-filter-group">
+            <label class="report-filter-label" for="sales-payment-method">Metode</label>
+            <select id="sales-payment-method" data-sales-filter-method>
+              <option value="">Semua metode</option>
+              <option value="cash">Tunai</option>
+              <option value="qris">QRIS</option>
+              <option value="transfer">Transfer</option>
+              <option value="tempo">Tempo</option>
+            </select>
+          </div>
+          <div class="report-filter-group">
+            <label class="report-filter-label" for="sales-source">Sumber</label>
+            <select id="sales-source" data-sales-filter-source>
+              <option value="">Semua sumber</option>
+              <option value="akurata">Akurata</option>
+              <option value="loyverse">Loyverse</option>
+            </select>
+          </div>
+          <div class="report-filter-actions">
+            <button class="btn btn-ghost" type="button" data-sales-report-reset>Reset</button>
+            <button class="btn btn-secondary" type="button" data-sales-report-pdf>Unduh PDF</button>
+          </div>
+        </div>
+
+        <main class="content" data-page-content></main>
+      </div>
+    </div>
+
+    <script src="dashboard.js?v=20260615-8"></script>
+  </body>
+</html>

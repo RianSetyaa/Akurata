@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrator - Akurata POS</title>
+    <link rel="icon" type="image/png" href="../logo.png" />
+    <link rel="stylesheet" href="../dashboard/dashboard.css?v=20260611-3" />
+    <style>
+      body { background: #f3f6f9; }
+      .admin-shell { min-height: 100vh; padding: 32px; overflow-x: hidden; }
+      .admin-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+      .admin-brand { display: flex; align-items: center; gap: 12px; color: #0f172a; text-decoration: none; }
+      .admin-brand img { width: 44px; height: 44px; border-radius: 8px; background: #fff; }
+      .admin-brand strong { display: block; font-size: 1.5rem; }
+      .admin-brand span span { color: #64748b; font-size: 0.875rem; font-weight: 700; text-transform: uppercase; }
+      .admin-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+      .admin-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr); gap: 18px; }
+      .admin-panel { padding: 22px; border: 1px solid #dbe3ea; border-radius: 8px; background: #fff; }
+      .admin-panel h2 { margin: 0 0 14px; color: #111827; font-size: 1.4rem; }
+      .admin-table { display: grid; gap: 8px; }
+      .admin-row { display: grid; grid-template-columns: 1.3fr 0.7fr 0.7fr 0.7fr auto; align-items: center; gap: 10px; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; }
+      .admin-row.admin-head { background: #eaf0f6; color: #64748b; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
+      .admin-row strong, .admin-row span { min-width: 0; overflow-wrap: anywhere; }
+      .admin-inline-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+      .user-row { display: grid; grid-template-columns: 1fr 1fr 0.7fr auto; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #e2e8f0; }
+      .user-row:last-child { border-bottom: 0; }
+      .notice { margin-bottom: 14px; }
+      .admin-support-panel { grid-column: 1 / -1; }
+      .admin-support-layout { min-height: 480px; display: grid; grid-template-columns: minmax(240px, 0.35fr) minmax(0, 0.65fr); border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; }
+      .admin-support-conversations { padding: 10px; display: grid; align-content: start; gap: 7px; border-right: 1px solid #e2e8f0; background: #f8fafc; overflow-y: auto; }
+      .admin-support-conversation { width: 100%; padding: 11px; display: grid; gap: 4px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; color: #0f172a; text-align: left; cursor: pointer; }
+      .admin-support-conversation.is-active { border-color: #06b6d4; background: #ecfeff; }
+      .admin-support-conversation span, .admin-support-conversation small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .admin-support-conversation small { color: #64748b; }
+      .admin-support-conversation em { justify-self: start; padding: 2px 7px; border-radius: 9999px; background: #dc2626; color: #fff; font-size: 0.65rem; font-style: normal; }
+      .admin-support-conversation mark { justify-self: start; padding: 2px 7px; border-radius: 9999px; background: #e2e8f0; color: #475569; font-size: 0.65rem; font-weight: 800; }
+      .admin-support-chat { min-width: 0; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; }
+      .admin-support-chat header { padding: 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid #e2e8f0; }
+      .admin-support-chat header strong, .admin-support-chat header span { display: block; }
+      .admin-support-chat header span { margin-top: 3px; color: #64748b; font-size: 0.75rem; }
+      .admin-support-messages { padding: 14px; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; background: #f8fafc; }
+      .admin-support-message { max-width: 82%; padding: 9px 11px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+      .admin-support-message.is-admin { align-self: flex-end; border-color: #a5f3fc; background: #ecfeff; }
+      .admin-support-message.is-outlet { align-self: flex-start; }
+      .admin-support-message span { display: block; color: #64748b; font-size: 0.65rem; }
+      .admin-support-message p { margin: 4px 0 0; font-size: 0.85rem; line-height: 1.3rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+      .admin-support-form { padding: 10px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; border-top: 1px solid #e2e8f0; }
+      .admin-support-form textarea { width: 100%; min-height: 44px; max-height: 120px; padding: 10px; border: 1px solid #dbe3ea; border-radius: 8px; resize: vertical; font: inherit; }
+      @media (max-width: 980px) {
+        .admin-shell { padding: 18px; }
+        .admin-grid { grid-template-columns: 1fr; }
+        .admin-header { align-items: flex-start; flex-direction: column; }
+        .admin-row, .user-row { grid-template-columns: 1fr; }
+        .admin-support-layout { grid-template-columns: 1fr; }
+        .admin-support-conversations { max-height: 220px; border-right: 0; border-bottom: 1px solid #e2e8f0; }
+      }
+      @media (max-width: 760px) {
+        .admin-shell { padding: 14px; }
+        .admin-header { gap: 14px; margin-bottom: 16px; }
+        .admin-brand img { width: 40px; height: 40px; }
+        .admin-brand strong { font-size: 1.2rem; line-height: 1.5rem; }
+        .admin-actions { width: 100%; display: grid; grid-template-columns: 1fr; gap: 8px; }
+        .admin-actions .btn { width: 100%; }
+        .admin-grid { gap: 12px; }
+        .admin-panel { padding: 14px; border-radius: 8px; }
+        .admin-panel h2 { font-size: 1.15rem; line-height: 1.5rem; }
+        .admin-table { gap: 8px; }
+        .admin-row.admin-head { display: none; }
+        .admin-row, .user-row {
+          gap: 0;
+          padding: 4px 12px;
+          border: 1px solid #e2e8f0;
+          border-radius: 8px;
+          background: #fff;
+        }
+        .admin-row > *, .user-row > * {
+          min-width: 0;
+          padding: 10px 0;
+          display: grid;
+          grid-template-columns: minmax(88px, 0.42fr) minmax(0, 0.58fr);
+          align-items: center;
+          gap: 10px;
+          border-top: 1px solid #e2e8f0;
+          overflow-wrap: anywhere;
+          text-align: right;
+        }
+        .admin-row > *:first-child, .user-row > *:first-child { border-top: 0; }
+        .admin-row > *::before, .user-row > *::before {
+          color: #64748b;
+          font-size: 0.7rem;
+          font-weight: 800;
+          line-height: 1rem;
+          text-align: left;
+          text-transform: uppercase;
+        }
+        .admin-row > *:nth-child(1)::before { content: "Outlet"; }
+        .admin-row > *:nth-child(2)::before { content: "User"; }
+        .admin-row > *:nth-child(3)::before { content: "Produk"; }
+        .admin-row > *:nth-child(4)::before { content: "Transaksi"; }
+        .admin-row > *:nth-child(5)::before { content: "Aksi"; }
+        .user-row > *:nth-child(1)::before { content: "User"; }
+        .user-row > *:nth-child(2)::before { content: "Outlet"; }
+        .user-row > *:nth-child(3)::before { content: "Role"; }
+        .user-row > *:nth-child(4)::before { content: "Aksi"; }
+        .admin-inline-actions {
+          justify-content: stretch;
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+        .admin-inline-actions .btn, .user-row .btn { width: 100%; }
+        .admin-support-panel { padding: 12px; }
+        .admin-support-layout { min-height: 70dvh; }
+        .admin-support-form { grid-template-columns: 1fr; }
+        .admin-support-form .btn { width: 100%; }
+      }
+      @media (max-width: 390px) {
+        .admin-row > *, .user-row > * {
+          grid-template-columns: 1fr;
+          gap: 4px;
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="admin-shell">
+      <header class="admin-header">
+        <a class="admin-brand" href="index.html">
+          <img src="../logo.png" alt="" />
+          <span>
+            <span>Administrator</span>
+            <strong>Akurata POS</strong>
+          </span>
+        </a>
+        <div class="admin-actions">
+          <a class="btn btn-ghost" href="../dashboard/index.html">Dashboard Outlet</a>
+          <button class="btn btn-ghost" type="button" data-stop-impersonate>Stop Impersonate</button>
+          <button class="btn btn-secondary" type="button" data-logout>Keluar</button>
+        </div>
+      </header>
+
+      <section class="admin-grid">
+        <article class="admin-panel">
+          <div data-admin-status></div>
+          <h2>Outlet</h2>
+          <div class="admin-table" data-outlet-table>
+            <p class="notice">Memuat outlet.</p>
+          </div>
+        </article>
+
+        <article class="admin-panel">
+          <h2>User</h2>
+          <div data-user-list>
+            <p class="notice">Memuat user.</p>
+          </div>
+        </article>
+
+        <article class="admin-panel admin-support-panel">
+          <h2>Customer Service</h2>
+          <div class="admin-support-layout">
+            <div class="admin-support-conversations" data-support-conversations>
+              <p class="notice">Memuat percakapan.</p>
+            </div>
+            <section class="admin-support-chat">
+              <header>
+                <div>
+                  <strong data-support-chat-title>Pilih outlet</strong>
+                  <span data-support-chat-status>Percakapan akan tampil di sini.</span>
+                </div>
+                <button class="btn btn-ghost is-hidden" type="button" data-support-end-chat>Akhiri sesi</button>
+              </header>
+              <div class="admin-support-messages" data-support-messages>
+                <p class="notice" data-support-empty>Belum ada percakapan yang dipilih.</p>
+              </div>
+              <form class="admin-support-form" data-support-form>
+                <textarea name="message" maxlength="2000" rows="2" placeholder="Tulis balasan..." required disabled></textarea>
+                <button class="btn btn-secondary" type="submit" disabled>Kirim</button>
+              </form>
+            </section>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script src="administrator.js?v=20260611-3"></script>
+  </body>
+</html>

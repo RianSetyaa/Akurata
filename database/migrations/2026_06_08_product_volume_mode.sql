@@ -1,0 +1,15 @@
+USE akurata_pos;
+
+ALTER TABLE products
+  ADD COLUMN sold_by_weight TINYINT(1) NOT NULL DEFAULT 0 AFTER sale_price,
+  MODIFY stock_qty DECIMAL(14,3) NOT NULL DEFAULT 0,
+  MODIFY min_stock DECIMAL(14,3) NOT NULL DEFAULT 0;
+
+ALTER TABLE transaction_items
+  MODIFY qty DECIMAL(14,3) NOT NULL;
+
+ALTER TABLE purchase_items
+  MODIFY qty DECIMAL(14,3) NOT NULL;
+
+ALTER TABLE quotation_items
+  MODIFY qty DECIMAL(14,3) NOT NULL;

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Masuk - Akurata POS</title>
+    <meta
+      name="description"
+      content="Masuk ke Akurata POS untuk mengelola kasir, stok, piutang, dan laporan toko."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="stylesheet" href="styles.css?v=20260611-3" />
+  </head>
+  <body class="auth-page">
+    <header class="topbar auth-topbar">
+      <a class="brand" href="index.html" aria-label="Akurata POS">
+        <span class="brand-mark">
+          <img src="logo.png" alt="" />
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Akurata POS</span>
+          <span class="brand-tag">Kasir dan pembukuan toko</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Navigasi auth">
+        <a href="index.html#fitur">Fitur</a>
+        <a href="daftar.html" class="nav-cta">Daftar</a>
+      </nav>
+    </header>
+
+    <main class="auth-shell">
+      <section class="auth-card reveal">
+        <div class="auth-heading">
+          <span class="eyebrow">Akses dashboard</span>
+          <h1>Masuk ke Akurata POS</h1>
+          <p>Gunakan akun toko Anda untuk membuka ringkasan kasir, stok, dan laporan harian.</p>
+        </div>
+
+        <form class="auth-form" data-api="api/login.php" data-redirect="dashboard/index.html">
+          <label class="field">
+            <span>Email atau nomor WhatsApp</span>
+            <input type="text" name="identity" autocomplete="username" required />
+          </label>
+
+          <label class="field">
+            <span>Password</span>
+            <input type="password" name="password" autocomplete="current-password" required />
+          </label>
+
+          <div class="form-row">
+            <label class="check-field">
+              <input type="checkbox" name="remember" />
+              <span>Ingat saya</span>
+            </label>
+            <a href="lupa-password.html" class="text-link">Lupa password?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Masuk</button>
+        </form>
+
+        <p class="auth-switch">
+          Belum punya akun?
+          <a href="daftar.html">Daftar Akurata POS</a>
+        </p>
+      </section>
+
+      <aside class="auth-aside reveal" aria-label="Ringkasan operasional">
+        <div class="auth-aside-top">
+          <span class="screen-logo">
+            <img src="logo.png" alt="" />
+          </span>
+          <span class="status-pill">Outlet aktif</span>
+        </div>
+        <h2>Kontrol toko dimulai dari data yang rapi.</h2>
+        <a class="auth-dashboard-link" href="dashboard/index.html">Lihat contoh dashboard</a>
+        <div class="auth-metrics">
+          <article>
+            <span>Omzet hari ini</span>
+            <strong>Rp 18.420.000</strong>
+          </article>
+          <article>
+            <span>Shift kasir</span>
+            <strong>3 aktif</strong>
+          </article>
+          <article>
+            <span>Stok perlu dicek</span>
+            <strong>12 SKU</strong>
+          </article>
+        </div>
+      </aside>
+    </main>
+
+    <script src="script.js?v=20260611-3"></script>
+  </body>
+</html>

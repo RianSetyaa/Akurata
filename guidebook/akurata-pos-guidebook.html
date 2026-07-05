@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guide Book Akurata POS</title>
+    <link rel="stylesheet" href="guidebook.css" />
+  </head>
+  <body>
+    <section class="page cover">
+      <div class="cover-top">
+        <div class="brand-lockup">
+          <img src="../logo.png" alt="Logo Akurata POS" />
+          <div>
+            <strong>Akurata POS</strong>
+            <span>Kasir, stok, piutang, laporan, dan integrasi Loyverse</span>
+          </div>
+        </div>
+        <div>
+          <span class="eyebrow">Guide book pengguna</span>
+          <h1>Panduan Operasional Web Akurata POS</h1>
+          <p class="muted">
+            Dokumen ini dibuat untuk membantu Administrator, Owner, Manager, dan kasir memahami alur kerja utama Akurata POS dari login sampai laporan.
+          </p>
+        </div>
+        <div class="cover-card">
+          <div><span>Versi dokumen</span><strong>15 Juni 2026</strong></div>
+          <div><span>Platform</span><strong>Web Dashboard</strong></div>
+          <div><span>Integrasi</span><strong>Loyverse</strong></div>
+        </div>
+      </div>
+      <p class="cover-footer">
+        Catatan: screenshot pada dokumen ini memakai data contoh agar tidak memuat data pelanggan, informasi integrasi, atau transaksi asli.
+      </p>
+    </section>
+
+    <section class="page">
+      <span class="eyebrow">Daftar isi</span>
+      <h2>Isi panduan</h2>
+      <div class="toc">
+        <ol>
+          <li>Gambaran umum Akurata POS</li>
+          <li>Peran pengguna dan batas akses</li>
+          <li>Login, daftar, OTP, dan lupa password</li>
+          <li>Dashboard operasional</li>
+          <li>Penjualan, pajak, diskon, dan invoice</li>
+          <li>Quotation</li>
+          <li>Produk, stok, barcode, import Excel, dan paket</li>
+          <li>Purchase Order dan terima barang</li>
+          <li>Piutang, DP, pembayaran parsial, dan invoice pembayaran</li>
+          <li>Laporan penjualan dan pembelian</li>
+          <li>Profil bisnis, pajak, rekening, dan logo dokumen</li>
+          <li>Integrasi Loyverse</li>
+          <li>Akses user, log aktivitas, dan chat CS</li>
+          <li>Laman Administrator</li>
+          <li>Penggunaan mobile</li>
+          <li>Pertanyaan umum dan checklist penggunaan</li>
+        </ol>
+      </div>
+
+      <div class="section">
+        <h2>1. Gambaran umum</h2>
+        <p>
+          Akurata POS adalah sistem backoffice dan kasir berbasis web untuk membantu bisnis mengelola transaksi harian, stok, pembelian, piutang, laporan, dokumen PDF, dan sinkronisasi Loyverse.
+        </p>
+        <div class="three-col">
+          <article class="card"><span>Kasir</span><p>Transaksi dapat berisi lebih dari satu produk, diskon per item, pajak otomatis, pembayaran tunai, QRIS, transfer, atau tempo.</p></article>
+          <article class="card"><span>Stok</span><p>Produk mendukung satuan, volume/berat, barcode, kamera scanner, import Excel, dan composite item untuk paket.</p></article>
+          <article class="card"><span>Integrasi</span><p>Produk dapat dipush ke Loyverse, receipt Loyverse dapat ditarik, dan pajak/store Loyverse dapat disinkronkan.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="page">
+      <span class="eyebrow">Role</span>
+      <h2>2. Peran pengguna dan batas akses</h2>
+      <div class="role-grid">
+        <article>
+          <h3>Administrator</h3>
+          <p>Mengelola semua outlet, melihat akun, menghapus akun/toko secara aman, menangani chat CS, dan impersonate ke outlet tertentu.</p>
+        </article>
+        <article>
+          <h3>Owner</h3>
+          <p>Pemilik bisnis. Dapat membuka semua fitur outlet: transaksi, produk, PO, piutang, laporan, integrasi, log, profil bisnis, dan akses tim.</p>
+        </article>
+        <article>
+          <h3>Manager</h3>
+          <p>Pengguna backoffice dengan fitur dibatasi. Tidak dapat membuka Integrasi Loyverse, Log, dan edit Profil Bisnis.</p>
+        </article>
+      </div>
+      <div class="callout">
+        <strong>Prinsip akses:</strong> pengguna hanya boleh melihat data outlet aktifnya. Administrator dapat masuk ke outlet via impersonate, tetapi aksi impersonate tidak perlu dicatat sebagai log outlet.
+      </div>
+      <table class="mini-table">
+        <thead><tr><th>Fitur</th><th>Administrator</th><th>Owner</th><th>Manager</th><th>Cashier</th></tr></thead>
+        <tbody>
+          <tr><td>Dashboard, penjualan, produk, PO, piutang</td><td>Via impersonate</td><td>Penuh</td><td>Penuh</td><td>Terbatas sesuai kebutuhan kasir</td></tr>
+          <tr><td>Integrasi Loyverse</td><td>Global / support</td><td>Penuh</td><td>Tidak</td><td>Tidak</td></tr>
+          <tr><td>Log aktivitas</td><td>Global / support</td><td>Penuh</td><td>Tidak</td><td>Tidak</td></tr>
+          <tr><td>Profil bisnis dan pajak</td><td>Global / support</td><td>Penuh</td><td>Tidak</td><td>Tidak</td></tr>
+          <tr><td>Kelola outlet dan impersonate</td><td>Penuh</td><td>Tidak</td><td>Tidak</td><td>Tidak</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="page">
+      <span class="eyebrow">Masuk akun</span>
+      <h2>3. Login, daftar, OTP, dan lupa password</h2>
+      <div class="screenshot">
+        <img src="screenshots/00-login.png" alt="Screenshot halaman login Akurata POS" />
+        <p class="caption">Halaman login digunakan untuk membuka dashboard berdasarkan sesi akun.</p>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Login</h3>
+          <ol class="steps">
+            <li>Buka halaman login Akurata POS.</li>
+            <li>Masukkan email atau nomor WhatsApp yang terdaftar.</li>
+            <li>Masukkan password.</li>
+            <li>Aktifkan <strong>Ingat saya</strong> jika ingin sesi bertahan lebih lama.</li>
+            <li>Klik <strong>Masuk</strong>.</li>
+          </ol>
+        </div>
+        <div>
+          <h3>Daftar dan OTP</h3>
+          <ol class="steps">
+            <li>Buka halaman daftar Akurata POS.</li>
+            <li>Isi nama bisnis, nama pengguna, email/WhatsApp, dan password.</li>
+            <li>Sistem mengirim kode verifikasi ke email.</li>
+            <li>Masukkan kode verifikasi sebelum kedaluwarsa.</li>
+            <li>Setelah valid, akun dan outlet pertama dibuat.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="callout warning">
+        Jika kode verifikasi tidak masuk, cek folder spam/promosi, pastikan email benar, lalu ulangi pendaftaran atau hubungi tim support Akurata.
+      </div>
+    </section>
+
+    <section class="page">
+      <span class="eyebrow">Operasional</span>
+      <h2>4. Dashboard operasional</h2>
+      <div class="screenshot">
+        <img src="screenshots/dashboard.png" alt="Screenshot dashboard Akurata POS" />
+        <p class="caption">Dashboard menampilkan omzet, transaksi, margin, stok kritis, aktivitas kasir, dan shortcut restock.</p>
+      </div>
+      <ol class="steps">
+        <li>Gunakan kartu metrik untuk melihat kondisi harian secara cepat.</li>
+        <li>Cek grafik per jam untuk membaca jam ramai dan pola transaksi.</li>
+        <li>Gunakan daftar stok kritis untuk membuat PO cepat.</li>
+        <li>Gunakan transaksi terbaru untuk membuka detail dan preview dokumen.</li>
+      </ol>
+      <p class="footer-note">Jika data belum tampil, tunggu beberapa saat lalu refresh halaman. Jika masih belum muncul, hubungi admin atau tim support.</p>
+    </section>
+
+    <section class="page">
+      <span class="eyebrow">Penjualan</span>
+      <h2>5. Penjualan, pajak, diskon, dan invoice</h2>
+      <div class="screenshot">
+        <img src="screenshots/sales.png" alt="Screenshot modal transaksi baru" />
+        <p class="caption">Transaksi baru dapat berisi beberapa item, diskon, pajak, dan pilihan metode pembayaran.</p>
+      </div>
+      <ol class="steps">
+        <li>Buka menu <strong>Penjualan</strong>.</li>
+        <li>Klik <strong>Transaksi baru</strong>.</li>
+        <li>Pilih metode pembayaran: Tunai, QRIS, Transfer, atau Tempo.</li>
+        <li>Pilih produk, qty, dan diskon jika ada.</li>
+        <li>Jika pajak diaktifkan, sistem menghitung subtotal + pajak.</li>
+        <li>Klik <strong>Simpan transaksi</strong>.</li>
+        <li>Buka <strong>Preview</strong> untuk melihat invoice PDF.</li>
+      </ol>
+      <div class="callout">
+        Pajak dicatat sebagai kolom terpisah. Di laporan penjualan, pajak tidak dihitung sebagai keuntungan.
+      </div>
+      <h3>Quotation</h3>
+      <p>
+        Quotation digunakan untuk membuat penawaran sebelum transaksi final. Owner dapat menampilkan atau menyembunyikan menu Quotation melalui Profil Bisnis. Jika fitur dimatikan, halaman akan memberi tahu bahwa Quotation tidak sedang ditampilkan.
+      </p>
+    </section>
+
+    <section class="page">
+      <span class="eyebrow">Produk</span>
+      <h2>6. Produk, stok, barcode, import Excel, dan paket</h2>
+      <div class="screenshot">
+        <img src="screenshots/products.png" alt="Screenshot produk dan stok" />
+        <p class="caption">Tabel produk mendukung filter, pagination 10-100 produk, dan dropdown aksi agar tampilan tetap ringkas.</p>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Tambah atau edit produk</h3>
+          <ol class="steps">
+            <li>Klik <strong>Tambah produk</strong> atau pilih <strong>Edit produk</strong> dari dropdown aksi.</li>
+            <li>Isi SKU, barcode, nama produk, kategori, tipe jual, stok, HPP, dan harga jual.</li>
+            <li>Pilih <strong>Volume / Berat</strong> untuk produk desimal seperti beras, kopi kiloan, atau cairan.</li>
+            <li>Pilih <strong>Composite / Paket</strong> untuk produk paket seperti rokok per bungkus berisi beberapa batang.</li>
+          </ol>
+        </div>
+        <div>
+          <h3>Import Excel dan barcode</h3>
+          <ol class="steps">
+            <li>Klik <strong>Unduh template</strong> untuk mengambil format Excel.</li>
+            <li>Isi sheet Produk dan Komponen.</li>
+            <li>Upload file melalui <strong>Import Excel</strong>.</li>
+            <li>Barcode dapat diketik manual atau dipindai menggunakan kamera.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="callout warning">
+        Agar push produk ke Loyverse tidak gagal, pastikan SKU maksimal 40 karakter, nama maksimal 64 karakter, barcode unik, harga tidak negatif, dan produk volume hanya dipakai jika qty boleh desimal.
+      </div>
+    </section>
+
+    <section class="page">
+      <span class="eyebrow">Pembelian</span>
+      <h2>7. Purchase Order dan terima barang</h2>
+      <div class="screenshot">
+        <img src="screenshots/purchases.png" alt="Screenshot purchase order" />
+        <p class="caption">PO mendukung lebih dari satu barang dan tidak langsung menambah stok sampai barang diterima.</p>
+      </div>
+      <ol class="steps">
+        <li>Buka menu <strong>Purchase Order</strong>.</li>
+        <li>Klik <strong>Buat purchase order</strong>.</li>
+        <li>Isi supplier dan beberapa item barang.</li>
+        <li>Simpan PO. Status masih <strong>Menunggu</strong>.</li>
+        <li>Saat barang datang, klik <strong>Terima barang</strong>.</li>
+        <li>Masukkan biaya tambahan seperti ongkir, handling, atau biaya lain.</li>
+        <li>Setelah diterima, stok produk bertambah dan HPP disesuaikan.</li>
+      </ol>
+      <div class="callout">
+        Rumus HPP PO: <code>Pembelian per pcs + (Biaya lain / Qty)</code>. HPP baru disesuaikan dengan pendekatan rata-rata: HPP PO dan HPP sebelumnya dirata-ratakan.
+      </div>
+    </section>
+
+    <section class="page">
+      <span class="eyebrow">Piutang</span>
+      <h2>8. Piutang, DP, pembayaran parsial, dan invoice pembayaran</h2>
+      <div class="screenshot">
+        <img src="screenshots/receivables.png" alt="Screenshot piutang Akurata POS" />
+        <p class="caption">Piutang muncul dari transaksi tempo dan dapat dibayar sebagian sampai lunas.</p>
+      </div>
+      <ol class="steps">
+        <li>Pada transaksi penjualan, pilih metode <strong>Tempo</strong>.</li>
+        <li>Isi pelanggan, jatuh tempo, dan DP jika ada.</li>
+        <li>Buka menu <strong>Piutang</strong> untuk melihat tagihan.</li>
+        <li>Klik <strong>Bayar</strong> untuk mencatat pembayaran penuh atau sebagian.</li>
+        <li>Setiap pembayaran dapat dibuatkan invoice pembayaran PDF.</li>
+        <li>Edit jatuh tempo jika kesepakatan pembayaran berubah.</li>
+      </ol>
+      <div class="callout warning">
+        Jika transaksi tempo belum muncul di Piutang, refresh halaman dan pastikan metode pembayaran transaksi benar-benar menggunakan Tempo. Jika masih belum muncul, hubungi admin atau tim support.
+      </div>
+    </section>
+
+    <section class="page">
+      <span class="eyebrow">Laporan</span>
+      <h2>9. Laporan penjualan dan pembelian</h2>
+      <div class="screenshot">
+        <img src="screenshots/reports.png" alt="Screenshot laporan penjualan" />
+        <p class="caption">Laporan memisahkan subtotal, diskon, pajak, total, HPP, dan laba kotor.</p>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Laporan penjualan</h3>
+          <ol class="steps">
+            <li>Buka menu <strong>Laporan Penjualan</strong>.</li>
+            <li>Gunakan pencarian untuk menemukan invoice, pelanggan, atau kasir.</li>
+            <li>Perhatikan kolom pajak karena pajak bukan laba.</li>
+            <li>Gunakan angka laba kotor untuk evaluasi produk dan margin.</li>
+          </ol>
+        </div>
+        <div>
+          <h3>Laporan pembelian</h3>
+          <ol class="steps">
+            <li>Buka menu <strong>Laporan Pembelian</strong>.</li>
+            <li>Cek PO, supplier, tanggal, total, dan biaya tambahan.</li>
+            <li>Gunakan data ini untuk audit HPP dan stok masuk.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="page">
+      <span class="eyebrow">Pengaturan</span>
+      <h2>10. Profil bisnis, pajak, rekening, dan logo dokumen</h2>
+      <div class="screenshot">
+        <img src="screenshots/settings.png" alt="Screenshot profil bisnis" />
+        <p class="caption">Profil Bisnis mengatur identitas outlet, logo dokumen, rekening penagihan, pajak, dan fitur Quotation.</p>
+      </div>
+      <ol class="steps">
+        <li>Buka <strong>Pengaturan > Profil Bisnis</strong>.</li>
+        <li>Isi nama usaha dan alamat yang akan muncul pada dokumen.</li>
+        <li>Upload logo usaha. Logo digunakan pada invoice, quotation, dan dokumen pembayaran.</li>
+        <li>Isi rekening penagihan untuk invoice tempo.</li>
+        <li>Aktifkan atau nonaktifkan pajak invoice dan isi persentase pajak.</li>
+        <li>Aktifkan atau nonaktifkan fitur Quotation.</li>
+      </ol>
+      <div class="callout">
+        Saat pajak dinyalakan dan integrasi Loyverse aktif, sistem dapat membuat atau menyinkronkan pajak ke Loyverse.
+      </div>
+    </section>
+
+    <section class="page">
+      <span class="eyebrow">Loyverse</span>
+      <h2>11. Integrasi Loyverse</h2>
+      <div class="screenshot">
+        <img src="screenshots/integrations.png" alt="Screenshot integrasi Loyverse" />
+        <p class="caption">Integrasi Loyverse menyimpan akun merchant, POS/store aktif, sinkron produk, pajak, stok, dan receipt.</p>
+      </div>
+      <ol class="steps">
+        <li>Buka menu <strong>Integrasi</strong>.</li>
+        <li>Klik <strong>Connect Loyverse</strong> jika belum terhubung.</li>
+        <li>Login dengan akun Loyverse dan berikan izin akses yang diminta.</li>
+        <li>Pilih POS/store yang dipakai outlet.</li>
+        <li>Klik <strong>Push produk</strong> untuk mengirim produk Akurata ke Loyverse.</li>
+        <li>Klik <strong>Tarik penjualan</strong> untuk membaca receipt Loyverse dan membuat invoice di Akurata.</li>
+      </ol>
+      <div class="callout warning">
+        Pastikan akun Loyverse yang dipakai adalah akun bisnis yang benar dan memiliki akses untuk mengelola produk, stok, pajak, POS, dan transaksi.
+      </div>
+    </section>
+
+    <section class="page">
+      <span class="eyebrow">Akses dan CS</span>
+      <h2>12. Akses user, log aktivitas, dan chat CS</h2>
+      <div class="screenshot">
+        <img src="screenshots/access.png" alt="Screenshot akses user dan chat CS" />
+        <p class="caption">Owner dapat mengelola user outlet. Chat CS membantu outlet berkomunikasi dengan administrator tanpa refresh manual.</p>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Akses user</h3>
+          <ol class="steps">
+            <li>Buka <strong>Pengaturan > Akses</strong>.</li>
+            <li>Tambahkan Manager atau Cashier sesuai kebutuhan.</li>
+            <li>Gunakan ubah password jika akun tim perlu direset.</li>
+            <li>Gunakan hapus akun untuk menonaktifkan user tanpa merusak histori transaksi.</li>
+          </ol>
+        </div>
+        <div>
+          <h3>Log dan chat</h3>
+          <ol class="steps">
+            <li>Log aktivitas mencatat login, logout, transaksi, produk, PO, integrasi, dan aktivitas penting lain.</li>
+            <li>Log memakai pagination agar tidak memuat terlalu banyak data sekaligus.</li>
+            <li>Chat CS mendukung sesi aktif, riwayat, dan sesi baru setelah chat berakhir.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="page">
+      <span class="eyebrow">Administrator</span>
+      <h2>13. Laman Administrator</h2>
+      <div class="screenshot">
+        <img src="screenshots/admin.png" alt="Screenshot halaman administrator" />
+        <p class="caption">Administrator mengelola outlet, akun, integrasi, dan chat lintas tenant.</p>
+      </div>
+      <ol class="steps">
+        <li>Login menggunakan akun role <strong>administrator</strong>.</li>
+        <li>Buka laman Administrator dari menu yang tersedia.</li>
+        <li>Cari outlet atau akun yang ingin ditinjau.</li>
+        <li>Gunakan <strong>Impersonate</strong> untuk masuk sebagai outlet yang dituju.</li>
+        <li>Gunakan hapus akun atau toko jika diperlukan sesuai SOP internal.</li>
+      </ol>
+      <div class="callout danger">
+        Hapus toko dan akun adalah tindakan sensitif. Pastikan tindakan ini sudah disetujui pemilik bisnis dan tidak sedang ada pekerjaan operasional yang berjalan.
+      </div>
+    </section>
+
+    <section class="page">
+      <span class="eyebrow">Mobile</span>
+      <h2>14. Penggunaan HP/mobile</h2>
+      <div class="screenshot mobile">
+        <img src="screenshots/mobile-products.png" alt="Screenshot tampilan mobile Akurata POS" />
+        <p class="caption">Tampilan mobile menyusun tabel menjadi kartu agar tetap mudah dibaca di layar kecil.</p>
+      </div>
+      <ol class="steps">
+        <li>Gunakan menu mobile untuk membuka halaman dashboard.</li>
+        <li>Form transaksi, PO, produk, dan piutang akan berubah menjadi satu kolom.</li>
+        <li>Tabel berubah menjadi kartu dengan label kolom di setiap baris.</li>
+        <li>Scan barcode kamera memerlukan izin kamera dari browser. Gunakan koneksi web yang aman agar izin kamera dapat berjalan normal.</li>
+      </ol>
+    </section>
+
+    <section class="page">
+      <span class="eyebrow">Bantuan</span>
+      <h2>15. Pertanyaan umum pengguna</h2>
+      <table class="mini-table">
+        <thead><tr><th>Masalah</th><th>Penyebab umum</th><th>Langkah yang bisa dilakukan</th></tr></thead>
+        <tbody>
+          <tr><td>Tidak bisa login</td><td>Email/nomor WhatsApp atau password salah</td><td>Coba ulangi, gunakan fitur Lupa Password, atau minta Owner/Admin mengecek akun.</td></tr>
+          <tr><td>Kode verifikasi tidak masuk</td><td>Email salah atau masuk ke folder spam/promosi</td><td>Cek folder spam/promosi, pastikan email benar, lalu ulangi permintaan kode.</td></tr>
+          <tr><td>Produk tidak bisa dipush ke Loyverse</td><td>Data produk belum sesuai aturan sinkronisasi</td><td>Cek SKU, nama produk, barcode, harga, tipe satuan/volume, dan POS Loyverse aktif.</td></tr>
+          <tr><td>Stok Loyverse tidak berubah</td><td>Produk belum tersinkron atau POS yang dipilih belum sesuai</td><td>Pastikan produk sudah terintegrasi, POS aktif benar, lalu lakukan update produk atau tarik penjualan ulang.</td></tr>
+          <tr><td>Piutang tidak muncul</td><td>Transaksi belum memakai metode Tempo</td><td>Buka detail transaksi, pastikan metode pembayaran Tempo, lalu refresh halaman Piutang.</td></tr>
+          <tr><td>Kamera barcode tidak aktif</td><td>Izin kamera belum diberikan</td><td>Izinkan kamera pada browser dan coba buka ulang popup scan barcode.</td></tr>
+          <tr><td>Invoice belum sesuai</td><td>Logo, rekening, atau pajak belum diatur</td><td>Buka Profil Bisnis dan lengkapi logo, rekening penagihan, serta pengaturan pajak.</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="section">16. Checklist sebelum mulai menggunakan Akurata</h2>
+      <div class="checklist">
+        <ol class="steps">
+          <li>Login sebagai Owner dan lengkapi Profil Bisnis.</li>
+          <li>Upload logo usaha agar tampil pada invoice dan dokumen.</li>
+          <li>Isi rekening penagihan jika bisnis memakai pembayaran tempo.</li>
+          <li>Atur pajak sesuai kebutuhan bisnis.</li>
+          <li>Tambahkan user Manager atau Cashier sesuai tugas tim.</li>
+          <li>Masukkan produk awal atau gunakan Import Excel.</li>
+          <li>Atur barcode dan tipe produk satuan, volume, atau composite jika diperlukan.</li>
+          <li>Hubungkan Loyverse jika bisnis memakai POS Loyverse.</li>
+          <li>Uji satu transaksi kecil dan cek invoice PDF.</li>
+          <li>Cek laporan penjualan dan stok setelah transaksi tersimpan.</li>
+        </ol>
+      </div>
+      <p class="footer-note">
+        Akhir dokumen. Simpan PDF ini sebagai panduan penggunaan untuk tim outlet dan perbarui jika fitur baru ditambahkan.
+      </p>
+      <div class="callout">
+        <strong>Catatan pembaruan:</strong> Navigasi dashboard kini menggunakan baris menu horizontal di bagian atas halaman, menggantikan sidebar kiri. Sub-menu (Penjualan, Laporan, Pengaturan) dapat dibuka melalui dropdown pada menu yang bersangkutan. Pada tampilan mobile, navigasi dapat diakses melalui tombol hamburger di sebelah kanan bar navigasi.
+      </div>
+    </section>
+  </body>
+</html>

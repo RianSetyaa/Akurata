@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Akurata POS - Kasir, Stok, dan Laporan Harian</title>
+    <meta
+      name="description"
+      content="Akurata POS membantu toko, cafe, dan distributor kecil mengelola kasir, stok, piutang, dan laporan harian dalam satu sistem yang mudah dipakai."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="stylesheet" href="styles.css?v=20260611-3" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Akurata POS">
+        <span class="brand-mark">
+          <img src="logo.png" alt="" />
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Akurata POS</span>
+          <span class="brand-tag">Kasir dan pembukuan toko</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Navigasi utama">
+        <a href="#fitur">Fitur</a>
+        <a href="#alur">Cara kerja</a>
+        <a href="api-docs.html">API Docs</a>
+        <a href="#demo">Hubungi kami</a>
+        <a href="login.html" data-session-login>Masuk</a>
+        <a href="daftar.html" class="nav-cta" data-session-register>Daftar</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">Untuk toko yang butuh data rapi setiap hari</span>
+          <h1>Kasir, stok, dan laporan toko tanpa banyak drama.</h1>
+          <p>
+            Akurata POS membantu pemilik bisnis melihat penjualan, stok menipis,
+            kas masuk, dan piutang dari satu tempat. Tim tetap bisa kerja cepat
+            di meja kasir, sementara laporan harian tetap tercatat rapi.
+          </p>
+          <div class="hero-actions">
+            <a href="#demo" class="btn btn-primary">Jadwalkan demo</a>
+            <a href="#fitur" class="btn btn-secondary">Lihat fitur</a>
+          </div>
+          <div class="hero-notes" aria-label="Sorotan produk">
+            <span>Multi-outlet</span>
+            <span>Stok otomatis</span>
+            <span>Laporan harian</span>
+          </div>
+        </div>
+
+        <div class="hero-panel reveal" aria-label="Cuplikan dashboard Akurata POS">
+          <div class="screen real-dashboard-screen">
+            <div class="screen-sidebar">
+              <a class="screen-brand" href="dashboard/index.html" aria-label="Dashboard Akurata POS">
+                <span class="screen-logo">
+                  <img src="logo.png" alt="" />
+                </span>
+                <span>
+                  <strong>Akurata POS</strong>
+                  <small>Outlet</small>
+                </span>
+              </a>
+              <nav class="screen-nav" aria-label="Menu dashboard preview">
+                <span class="is-active">Dashboard</span>
+                <span>Penjualan</span>
+                <span>Produk & Stok</span>
+                <span>Purchase Order</span>
+                <span>Piutang</span>
+                <span>Laporan</span>
+              </nav>
+            </div>
+
+            <div class="screen-main">
+              <div class="screen-app-header">
+                <div>
+                  <span class="panel-label">Jumat, 5 Juni 2026</span>
+                  <h2>Dashboard Operasional</h2>
+                </div>
+                <div class="screen-actions">
+                  <span class="screen-search">Cari transaksi atau produk</span>
+                  <span class="status-pill">Transaksi baru</span>
+                </div>
+              </div>
+
+              <div class="metric-row dashboard-metric-row">
+                <article>
+                  <span>Omzet hari ini</span>
+                  <strong>Rp 0</strong>
+                  <small>0% dari kemarin</small>
+                </article>
+                <article>
+                  <span>Transaksi</span>
+                  <strong>0</strong>
+                  <small>Rata-rata Rp 0</small>
+                </article>
+                <article>
+                  <span>Margin kotor</span>
+                  <strong>0%</strong>
+                  <small>Belum ada data</small>
+                </article>
+                <article class="warning">
+                  <span>Stok kritis</span>
+                  <strong>0 SKU</strong>
+                  <small>0 shift aktif</small>
+                </article>
+              </div>
+
+              <div class="dashboard-preview-grid">
+                <article class="dashboard-preview-panel">
+                  <div class="preview-panel-head">
+                    <div>
+                      <span class="panel-label">Penjualan</span>
+                      <h3>Per jam hari ini</h3>
+                    </div>
+                    <span class="preview-chip">Live</span>
+                  </div>
+                  <div class="empty-preview">Belum ada data penjualan hari ini.</div>
+                </article>
+
+                <article class="dashboard-preview-panel">
+                  <div class="preview-panel-head">
+                    <div>
+                      <span class="panel-label">Kas & pembayaran</span>
+                      <h3>Metode masuk</h3>
+                    </div>
+                  </div>
+                  <div class="empty-preview">Belum ada pembayaran masuk.</div>
+                </article>
+              </div>
+
+              <div class="dashboard-preview-grid lower">
+                <article class="dashboard-preview-panel table-preview">
+                  <div class="preview-panel-head">
+                    <div>
+                      <span class="panel-label">Transaksi terbaru</span>
+                      <h3>Aktivitas kasir</h3>
+                    </div>
+                    <span class="preview-link">Lihat semua</span>
+                  </div>
+                  <div class="preview-table">
+                    <span>Invoice</span>
+                    <span>Pelanggan</span>
+                    <span>Total</span>
+                  </div>
+                  <div class="empty-preview">Belum ada transaksi.</div>
+                </article>
+
+                <article class="dashboard-preview-panel restock-preview">
+                  <div class="preview-panel-head">
+                    <div>
+                      <span class="panel-label">Stok perlu tindakan</span>
+                      <h3>Restock</h3>
+                    </div>
+                  </div>
+                  <div class="empty-preview">Tidak ada stok kritis.</div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section proof reveal">
+        <p>
+          Cocok untuk retail, cafe, minimarket, dan usaha distribusi yang ingin
+          laporan penjualan dan stoknya tidak tercecer.
+        </p>
+      </section>
+
+      <section id="fitur" class="section features">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Fitur utama</span>
+          <h2>Yang dipakai tim operasional setiap hari.</h2>
+          <p>
+            Fokusnya sederhana: transaksi cepat, stok akurat, dan laporan yang
+            bisa langsung dibaca pemilik bisnis.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card reveal">
+            <span class="icon">POS</span>
+            <h3>Kasir cepat</h3>
+            <p>Scan barcode, atur diskon, simpan pelanggan, dan cetak struk tanpa alur yang berputar-putar.</p>
+          </article>
+          <article class="feature-card reveal">
+            <span class="icon">STK</span>
+            <h3>Stok bergerak otomatis</h3>
+            <p>Setiap penjualan dan pembelian langsung mengubah stok, termasuk batas minimum per produk.</p>
+          </article>
+          <article class="feature-card reveal">
+            <span class="icon">KAS</span>
+            <h3>Kas dan piutang</h3>
+            <p>Catat pembayaran tunai, transfer, QRIS, tempo pelanggan, dan pengeluaran operasional.</p>
+          </article>
+          <article class="feature-card reveal">
+            <span class="icon">LAP</span>
+            <h3>Laporan siap baca</h3>
+            <p>Lihat omzet, margin, produk laris, stok lambat, dan ringkasan shift tanpa olah spreadsheet.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="alur" class="section workflow reveal">
+        <div class="workflow-copy">
+          <span class="eyebrow">Cara kerja</span>
+          <h2>Mulai dari data toko yang sudah ada.</h2>
+          <p>
+            Tidak perlu bongkar proses besar-besaran. Tim cukup memasukkan data
+            penting, mencoba alur kasir, lalu memakai laporan harian untuk kontrol.
+          </p>
+        </div>
+        <div class="workflow-steps">
+          <div class="step">
+            <span>01</span>
+            <div>
+              <h3>Masukkan produk dan saldo awal</h3>
+              <p>Import SKU, harga jual, stok awal, pelanggan, dan supplier utama.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span>02</span>
+            <div>
+              <h3>Pakai di kasir dan gudang</h3>
+              <p>Penjualan, retur, pembelian, dan penyesuaian stok masuk ke sistem yang sama.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span>03</span>
+            <div>
+              <h3>Cek laporan sebelum tutup hari</h3>
+              <p>Pemilik bisa melihat kas, omzet, dan stok yang perlu dikejar tanpa menunggu rekap manual.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section stats reveal">
+        <article>
+          <strong>10 menit</strong>
+          <span>untuk rekap shift harian</span>
+        </article>
+        <article>
+          <strong>3 kanal</strong>
+          <span>tunai, transfer, dan QRIS</span>
+        </article>
+        <article>
+          <strong>Multi</strong>
+          <span>outlet dan gudang</span>
+        </article>
+        <article>
+          <strong>Export</strong>
+          <span>laporan ke file kerja tim</span>
+        </article>
+      </section>
+
+      <section class="section testimonial reveal">
+        <blockquote>
+          "Yang paling membantu itu laporan stoknya. Kami jadi tahu produk mana yang harus dibeli lagi sebelum benar-benar habis."
+        </blockquote>
+        <div class="testimonial-meta">
+          <div>
+            <strong>Rina, Pemilik Toko Sembako</strong>
+            <span>Simulasi kebutuhan pengguna Akurata POS</span>
+          </div>
+          <a href="#demo" class="btn btn-secondary">Diskusi kebutuhan</a>
+        </div>
+      </section>
+
+      <section id="demo" class="section cta reveal">
+        <div>
+          <span class="eyebrow">Cek kecocokan</span>
+          <h2>Lihat apakah Akurata POS cocok dengan alur toko Anda.</h2>
+          <p>
+            Ceritakan tipe usaha dan jumlah outlet. Kami bantu tunjukkan alur
+            yang paling dekat dengan operasional harian Anda.
+          </p>
+        </div>
+        <form class="cta-form" data-whatsapp-form>
+          <input type="text" name="business" placeholder="Nama usaha" aria-label="Nama usaha" required />
+          <input type="text" name="contact" placeholder="Email atau nomor WhatsApp" aria-label="Email atau nomor WhatsApp" required />
+          <button type="submit" class="btn btn-primary">Minta demo</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>(c) 2026 Akurata POS. Dibuat untuk operasional toko yang rapi.</p>
+      <div class="footer-links" style="margin-top: 10px; font-size: 0.875rem;">
+        <a href="index.html" style="color: inherit; text-decoration: none;">Beranda</a> &nbsp;|&nbsp; 
+        <a href="api-docs.html" style="color: inherit; text-decoration: underline;">API Documentation</a>
+      </div>
+    </footer>
+
+    <script src="script.js?v=20260611-3"></script>
+  </body>
+</html>
